@@ -1,31 +1,31 @@
-# gta6-trophy-guide
+# Leonida Platinum Guide — GTA VI Trophy Tracker (PS5)
 
-[![make.fun · gta6-trophy-guide-01](https://make.fun/badge/gta6-trophy-guide-01.svg)](https://make.fun/bounty/gta6-trophy-guide-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-trophy-guide-01)
-[![rank](https://make.fun/badge/gta6-trophy-guide-01/taniarestu/gta6-trophy-guide/rank.svg)](https://make.fun/bounty/gta6-trophy-guide-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=gta6-trophy-guide-01)
-[![reward](https://make.fun/badge/gta6-trophy-guide-01/taniarestu/gta6-trophy-guide/reward.svg)](https://make.fun/bounty/gta6-trophy-guide-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-trophy-guide-01)
+An offline guide and tracker for all **55 GTA VI trophies** (1 platinum, 2 gold, 6 silver, 46 bronze — 1,350 PSN points, 27 visible + 28 hidden). One playthrough, about 200 hours to platinum, no online trophies.
 
-**Leonida Platinum Guide** — an offline guide and tracker for all 55 GTA VI PS5 trophies (1 platinum, 2 gold, 6 silver, 46 bronze; 27 visible + 28 hidden), with a sourced guide for every trophy, a 3-step roadmap to the platinum (~200 hours), and progress tracking toward the platinum.
+## What it does
 
-## What this app is
+- **Checklist** — every trophy with its official name, description and grade, an earned tick saved in your browser, PSN points and a progress bar.
+- **Filters** — by kind (story, character, activities, collectibles, robberies, misc…), grade, text search, not-earned-yet, and missable-only.
+- **Spoiler setting** — on by default: hidden story trophies stay masked (“Hidden story trophy — earn it to reveal”) until you earn them.
+- **Guide pane** — each trophy has a guide written in our own words, a short cited fact shown right on its card, and its sources named (PowerPyx, Exophase, GTABase).
+- **Roadmap** — three steps to platinum (story 60–80 h, 100% checklist ~100 h, cleanup ~10 h) plus the full 100% checklist table.
+- **Missables** — exactly one trophy can be missed: Positive Mental Attitude, the Chapter 1 meditation with Lucia. The page explains the morning-after-Down-to-Earth balcony step and the honest uncertainty about whether it counts, plus save advice (15 manual slots, no mission replay).
+- **Next-up planner** — the missable trophy first, then story order, character quests, activities and the 100% grind, each with a time estimate.
+- **Notes, export/import, reset** — per-trophy notes, progress export/import as JSON, and two themes (paper light + night dark).
 
-- **Checklist** — all 55 trophies with their official names, descriptions and grades, a tick-box that saves in your browser, PSN points (1,350 total), and a progress bar.
-- **Sourced guides** — every trophy card shows a short quote from its source (PowerPyx or GTABase), and the guide pane shows the full guide in our own words plus the source links. Claims that are still unconfirmed are labelled as such.
-- **Roadmap** — 3 steps: story (60–80 h) → 100% checklist (~100 h) → Strangers & Freaks cleanup (~10 h), with the full 100% checklist table.
-- **Missables** — exactly one possibly missable trophy (Positive Mental Attitude, the Chapter 1 meditation), with the honest uncertainty and a manual-save strategy (15 slots, no mission replay).
-- **Next-up planner** — the 3 closest trophies to chase next, based on what you have earned, with time estimates.
-- **Filters & search** — by kind (story, character quests, activities, collectibles, robberies), grade, text search, not-earned-only and missable-only. Spoiler protection is on by default: the 28 hidden trophies stay masked until earned.
-- **Notes, export/import, reset** — personal notes per trophy, progress export/import as JSON, and two themes (paper light + night dark).
-
-Fully offline: vanilla ES modules + CSS, no framework, no network requests. Trophy data lives in `app/data/trophies.json` (names, descriptions and grades follow the official list as published on Exophase; hidden flags follow GTABase and PlanetGTA6).
-
-## Run it
+## Run it offline
 
 ```sh
 node serve.ts
+# open http://localhost:8080
 ```
 
-Then open http://localhost:8080.
+No network calls, no account, no tracking. The only fetch is the local `app/data/trophies.json`.
 
----
+## Sources (checked 21 Nov 2026)
 
-<sub>Entered on [make.fun](https://make.fun/?utm_source=github&utm_medium=readme&utm_campaign=gta6-trophy-guide-01) · AI agents build software for cash rewards</sub>
+- Trophy names, descriptions and grades as published on PlayStation, via Exophase.
+- Grades and hidden flags cross-checked on GTABase.
+- Guidance paraphrased in our own words from the PowerPyx trophy guide and GTABase, with a short cited fact on every card. Two steps are labelled “reported, not fully confirmed” where the sources disagree.
+
+Fan-made guide. Not affiliated with Rockstar Games.

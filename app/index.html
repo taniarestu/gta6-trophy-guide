@@ -1,207 +1,63 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" data-theme="paper">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="light dark">
 <title>Leonida Platinum Guide — GTA VI Trophy Tracker</title>
-<link rel="stylesheet" href="style.css">
+<meta name="description" content="Offline checklist, roadmap and cited guides for all 55 GTA VI PS5 trophies. No network, no account, progress saved on your device.">
 <link rel="icon" href="favicon.png">
-<script>
-(function () {
-  var saved = null;
-  try { saved = JSON.parse(localStorage.getItem('leonida-platinum-guide-v1') || 'null'); } catch (e) {}
-  var t = (saved && saved.settings && saved.settings.theme) || null;
-  if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'night' : 'paper';
-  document.documentElement.setAttribute('data-theme', t);
-})();
-</script>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-<a class="skip-link" href="#main">Skip to the trophy list</a>
 <header class="topbar">
-  <div class="brand">
-    <p class="eyebrow">Grand Theft Auto VI · PlayStation 5 · Works fully offline</p>
-    <h1>Leonida Platinum Guide</h1>
-    <p class="subtitle">Every one of the 55 trophies — 1 platinum, 2 gold, 6 silver, 46 bronze — with a sourced guide for each, a three-step road to the platinum, and a tracker that remembers your progress on this device.</p>
+  <div class="wrap topbar-inner">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">★</span>
+      <div>
+        <h1>Leonida Platinum Guide</h1>
+        <p class="brand-sub">GTA VI &middot; PS5 &middot; 55 trophies &middot; 1,350 PSN points &middot; ~200 hours to platinum</p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <label class="switch"><input type="checkbox" id="spoilerToggle" checked> <span>Spoilers hidden</span></label>
+      <button type="button" id="themeToggle" class="btn btn-ghost" aria-pressed="false">Night theme</button>
+    </div>
   </div>
-  <div class="top-actions">
-    <button type="button" id="themeToggle" aria-pressed="false" aria-label="Switch theme">Night theme</button>
-    <button type="button" id="spoilerToggle" aria-pressed="true" aria-label="Toggle spoiler hiding">Spoilers hidden</button>
-  </div>
+  <nav class="wrap tabs" aria-label="Sections">
+    <a href="#/checklist" data-view="checklist">Checklist</a>
+    <a href="#/roadmap" data-view="roadmap">Roadmap</a>
+    <a href="#/missables" data-view="missables">Missables</a>
+    <a href="#/planner" data-view="planner">Next-up planner</a>
+    <a href="#/settings" data-view="settings">Settings &amp; data</a>
+  </nav>
 </header>
 
-<section class="kpis" aria-label="Progress summary">
-  <div class="kpi">
-    <span class="kpi-label">Platinum progress</span>
-    <span class="kpi-value" id="kpiCount">0 / 55 earned</span>
-    <div class="bar" role="progressbar" aria-label="Trophies earned" aria-valuemin="0" aria-valuemax="55" aria-valuenow="0" id="kpiBarWrap"><span class="bar-fill" id="kpiBar" style="width:0%"></span></div>
-  </div>
-  <div class="kpi">
-    <span class="kpi-label">PSN points</span>
-    <span class="kpi-value" id="kpiPoints">0 / 1,350</span>
-    <span class="kpi-note">Platinum 300 · Gold 90 · Silver 30 · Bronze 15</span>
-  </div>
-  <div class="kpi">
-    <span class="kpi-label">Road to platinum</span>
-    <span class="kpi-value">~200 hours</span>
-    <span class="kpi-note">Story 60–80 h · 100% checklist ~100 h · Cleanup ~10 h</span>
-  </div>
-  <div class="kpi kpi-warn">
-    <span class="kpi-label">Missable trophies</span>
-    <span class="kpi-value">1 possible</span>
-    <span class="kpi-note">Positive Mental Attitude — the Chapter 1 meditation. See the Missables tab.</span>
-  </div>
-</section>
-
-<nav class="tabs" aria-label="Sections">
-  <button type="button" class="tab active" data-view="checklist" aria-current="page">Checklist</button>
-  <button type="button" class="tab" data-view="roadmap">Roadmap</button>
-  <button type="button" class="tab" data-view="missables">Missables</button>
-  <button type="button" class="tab" data-view="planner">Next-up planner</button>
-  <button type="button" class="tab" data-view="settings">Settings &amp; sources</button>
-</nav>
-
-<main id="main">
-  <section id="view-checklist" class="view">
-    <div class="roadmap-strip" aria-label="Roadmap in three steps">
-      <h2>Road to Platinum — 3 steps</h2>
-      <ol class="steps">
-        <li><strong>Step 1 · Story</strong> <span>Play Chapters 1–5 (~60–80 h). Do the Chapter 1 meditation for Positive Mental Attitude. Scan vehicles &amp; study animals as you go.</span></li>
-        <li><strong>Step 2 · 100% checklist</strong> <span>After the story, work the checklist (~100 h): 100 optional missions, 200/277 vehicles, 100/255 animals, 70/80 challenges, 300 stunts.</span></li>
-        <li><strong>Step 3 · Cleanup</strong> <span>Strangers &amp; Freaks strands and anything left (~10 h). No mission replay — keep manual saves.</span></li>
-      </ol>
-    </div>
-
-    <div class="toolbar" role="search">
-      <label class="search-label">Search trophies
-        <input type="search" id="search" placeholder="Search name, guide or chapter…" autocomplete="off">
-      </label>
-      <div class="chips" id="kindChips" role="group" aria-label="Filter by kind"></div>
-      <label class="field">Grade
-        <select id="grade">
-          <option value="all">All grades</option>
-          <option value="platinum">Platinum</option>
-          <option value="gold">Gold</option>
-          <option value="silver">Silver</option>
-          <option value="bronze">Bronze</option>
-        </select>
-      </label>
-      <label class="check"><input type="checkbox" id="onlyUnearned"> Not earned yet</label>
-      <label class="check"><input type="checkbox" id="onlyMissable"> Missable only</label>
-    </div>
-    <p class="result-count" id="resultCount" role="status"></p>
-
-    <div class="split">
-      <div class="list-col">
-        <ul class="trophy-list" id="trophyList"></ul>
-        <p class="empty" id="emptyState" hidden>No trophies match these filters. Clear the search or a filter to see all 55 again.</p>
-      </div>
-      <aside class="detail" id="detail" aria-label="Trophy guide" hidden></aside>
-    </div>
+<main class="wrap" id="main">
+  <section class="kpis" aria-label="Progress summary">
+    <div class="kpi"><span class="kpi-label">Earned</span><strong id="kpiEarned">0 / 55</strong><span class="kpi-note" id="kpiEarnedNote">trophies earned</span></div>
+    <div class="kpi"><span class="kpi-label">PSN points</span><strong id="kpiPoints">0 / 1,350</strong><span class="kpi-note">platinum 300 &middot; gold 90 &middot; silver 30 &middot; bronze 15</span></div>
+    <div class="kpi"><span class="kpi-label">Platinum progress</span><strong id="kpiPct">0%</strong><div class="bar" role="progressbar" aria-label="Platinum progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="kpiBarWrap"><div class="bar-fill" id="kpiBar" style="width:0%"></div></div></div>
+    <div class="kpi"><span class="kpi-label">Missable</span><strong id="kpiMissable">1 left</strong><span class="kpi-note">Positive Mental Attitude (Ch. 1)</span></div>
   </section>
 
-  <section id="view-roadmap" class="view" hidden>
-    <h2>Roadmap to the platinum</h2>
-    <p class="lede">One playthrough is enough. There is no difficulty setting, no mission gold medal, no mission replay and no online trophy. Cheats switch trophies and saving off, so keep them away from your trophy run. Sources: the PowerPyx trophy guide &amp; roadmap, and the GTABase trophy list.</p>
-    <div class="roadmap-cards">
-      <article class="road-card">
-        <h3>Step 1 — Finish the story <span class="time">~60–80 hours</span></h3>
-        <p>Play Chapters 1–5 and enjoy the game. The 100% checklist only becomes visible after the story, but anything you do during the story already counts toward it. Take optional missions as they appear — the checklist asks for any 100 of them, and there are far more than 100 in the game.</p>
-        <ul>
-          <li><strong>Do not miss:</strong> the Chapter 1 meditation for Positive Mental Attitude (the morning after Down to Earth — Lucia in the kitchen, follow her to the balcony, choose Accept).</li>
-          <li>Scan vehicles with the WAiNK app (200 of 277 needed) and study animals through binoculars (100 of 255) as you travel.</li>
-          <li>Save by hand at the start and the end of every chapter — 15 manual slots plus 1 autosave, and no mission replay.</li>
-        </ul>
-      </article>
-      <article class="road-card">
-        <h3>Step 2 — 100% Completion checklist <span class="time">~100 hours</span></h3>
-        <p>After the story, find it under Progress, then Stats, then 100% Completion. It is closer to 60% true completion — most of it is partial counts.</p>
-        <ul>
-          <li><strong>Needed in full:</strong> all robberies (8 bank vaults, 39 gang operations), underwater discoveries, every Shooting Range gold medal, all drone races, Bret's 15 Target Decks.</li>
-          <li><strong>Partial counts:</strong> 100 optional missions · 200/277 vehicle scans · 100/255 animals · 15/18 meditations · 70/80 challenges · 300 stunts · 100 WAiNK scans.</li>
-          <li>Nothing on the checklist can be missed — everything stays open in free-roam.</li>
-        </ul>
-      </article>
-      <article class="road-card">
-        <h3>Step 3 — Strangers &amp; Freaks and cleanup <span class="time">~10 hours</span></h3>
-        <p>Stranger strands do not count toward 100%, so finish the 8 qualifying strands for Strangers &amp; Freaks (Kirk, Kyle, Yago, Pilot Pete and more still being confirmed), then sweep the checklist for anything left. The platinum pops when the last of the other 54 does.</p>
-      </article>
-    </div>
-    <h3>100% checklist at a glance</h3>
-    <table class="check-table">
-      <thead><tr><th>Requirement</th><th>Needed</th><th>Of</th></tr></thead>
-      <tbody>
-        <tr><td>Optional missions</td><td>100</td><td>200+</td></tr>
-        <tr><td>Vehicle scans (WAiNK)</td><td>200</td><td>277 base models</td></tr>
-        <tr><td>Animals studied (binoculars)</td><td>100</td><td>255</td></tr>
-        <tr><td>Meditations</td><td>15</td><td>18</td></tr>
-        <tr><td>Challenges</td><td>70</td><td>80</td></tr>
-        <tr><td>Stunts</td><td>300</td><td>397</td></tr>
-        <tr><td>WAiNK scans</td><td>100</td><td>100+</td></tr>
-        <tr><td>Bank vaults · gang operations · drone races · shooting ranges · Target Decks</td><td>all</td><td>8 · 39 · 42 · 42 · 15</td></tr>
-      </tbody>
-    </table>
+  <section id="roadmapStrip" class="roadmap-strip" aria-label="Roadmap in three steps">
+    <h2>Road to platinum — 3 steps, ~200 hours</h2>
+    <ol class="steps">
+      <li><strong>Step 1 · Story</strong><span>60–80 h · 5 chapters · do the Chapter 1 meditation</span></li>
+      <li><strong>Step 2 · 100% checklist</strong><span>~100 h · 70 of 80 challenges · 300 stunts</span></li>
+      <li><strong>Step 3 · Cleanup</strong><span>~10 h · Strangers &amp; Freaks · misc trophies</span></li>
+    </ol>
+    <p class="strip-note">Cheats disable trophies and saving. No trophy is online. One playthrough is enough — but there is no mission replay, so keep a save at the start and end of each chapter.</p>
   </section>
 
-  <section id="view-missables" class="view" hidden>
-    <h2>Missables — only one trophy can be missed</h2>
-    <p class="lede">PowerPyx lists exactly one potentially missable trophy. Everything else can be finished after the story in free-roam. The save advice below is how you protect that one trophy.</p>
-    <article class="miss-card" id="missCard"></article>
-    <h3>Next up — your 3 closest trophies</h3>
-    <ol class="nextup" id="nextUpMissables"></ol>
-    <h3>Save strategy (no mission replay)</h3>
-    <ul class="save-list">
-      <li>There are <strong>15 manual save slots</strong> plus 1 autosave. Keep a save at the <strong>start and end of each chapter</strong> (10 saves), then rotate the remaining 5 for free-roam cleanup.</li>
-      <li>Make the Chapter 1 save <strong>before</strong> the morning after Down to Earth, so you can replay the Lucia balcony meditation if you walk past it.</li>
-      <li>Cheats disable trophies and saving — do not touch them until the platinum is yours.</li>
-      <li>Avoid the Irredeemable criminal profile: it is permanent and makes police shoot on sight.</li>
-    </ul>
-  </section>
-
-  <section id="view-planner" class="view" hidden>
-    <h2>Next-up planner</h2>
-    <p class="lede">Based on what you have already earned, these are the closest trophies to chase next — story first, then the one missable, then the quickest wins.</p>
-    <ol class="nextup" id="nextUpPlanner"></ol>
-    <p class="planner-note">Estimates come from the PowerPyx roadmap (~200 h to platinum: story 60–80 h, 100% checklist ~100 h, cleanup ~10 h). Tick trophies off in the Checklist tab and this planner updates.</p>
-  </section>
-
-  <section id="view-settings" class="view" hidden>
-    <h2>Settings &amp; sources</h2>
-    <div class="settings-grid">
-      <div>
-        <h3>Display</h3>
-        <label class="check"><input type="checkbox" id="spoilerCheck" checked> Hide hidden story trophies until earned (spoiler protection)</label>
-        <p class="hint">When on, the 28 hidden trophies show as “Hidden story trophy — earn it to reveal” until you tick them earned. The 27 visible trophies are always shown.</p>
-        <label class="field">Theme
-          <select id="themeSelect">
-            <option value="paper">Paper (light)</option>
-            <option value="night">Night (dark)</option>
-          </select>
-        </label>
-      </div>
-      <div>
-        <h3>Your progress</h3>
-        <p>Progress, notes and settings live only in this browser (localStorage). Nothing leaves your device.</p>
-        <div class="btn-row">
-          <button type="button" id="exportBtn">Export progress (JSON)</button>
-          <label class="import-btn">Import progress <input type="file" id="importFile" accept="application/json"></label>
-          <button type="button" id="resetBtn" class="danger">Reset all progress</button>
-        </div>
-        <p class="hint" id="importMsg" role="status"></p>
-      </div>
-      <div>
-        <h3>Sources</h3>
-        <p>Names, descriptions and grades follow the official list as published on Exophase (checked 2026-11-21). Hidden flags (28 hidden, 27 visible) follow GTABase and PlanetGTA6. Every guide is written in our own words from the PowerPyx trophy guide &amp; roadmap and the GTABase trophy list; where a step is still unconfirmed, the guide says so. No game art or logos are used.</p>
-        <p class="hint">This guide is fully offline: it makes no network requests. Works with network off.</p>
-      </div>
-    </div>
-  </section>
+  <section id="view" aria-live="polite"></section>
 </main>
 
-<footer>
-  <p>Leonida Platinum Guide — an unofficial, offline fan guide for Grand Theft Auto VI on PS5. Not affiliated with Rockstar Games, Sony or PlayStation. Trophy names and descriptions are the official ones; guides are written in our own words and cite their sources on every trophy card.</p>
+<footer class="wrap footer">
+  <p><strong>Sources, checked 21 Nov 2026:</strong> names, descriptions and grades as published on PlayStation, via Exophase; grades and hidden flags cross-checked on GTABase; guidance paraphrased in our own words from the PowerPyx trophy guide and GTABase, with a short cited fact on every card. Two steps are honestly labelled “reported, not fully confirmed”. This guide is fan-made, works fully offline, and fetches nothing.</p>
+  <p class="footer-note">Progress is stored only in this browser (localStorage). Export it from Settings &amp; data before clearing browser data.</p>
 </footer>
+
 <script type="module" src="app.js"></script>
 </body>
 </html>
