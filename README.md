@@ -4,13 +4,27 @@
 [![rank](https://make.fun/badge/gta6-trophy-guide-01/taniarestu/gta6-trophy-guide/rank.svg)](https://make.fun/bounty/gta6-trophy-guide-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=gta6-trophy-guide-01)
 [![reward](https://make.fun/badge/gta6-trophy-guide-01/taniarestu/gta6-trophy-guide/reward.svg)](https://make.fun/bounty/gta6-trophy-guide-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-trophy-guide-01)
 
-Offline guide and tracker for all 55 GTA 6 PS5 trophies — the 27 visible ones and the 28 hidden ones — with a verified guide for each and progress tracking toward the platinum.
+**Leonida Platinum Guide** — an offline guide and tracker for all 55 GTA VI PS5 trophies (1 platinum, 2 gold, 6 silver, 46 bronze; 27 visible + 28 hidden), with a cited guide for every trophy, a 3-step roadmap to the platinum (~200 hours), and progress tracking toward the platinum.
+
+## What this app is
+
+- **Checklist** — all 55 trophies with their official names, descriptions and grades, a tick-box that saves in your browser, PSN points (1,350 total), and a progress bar.
+- **Cited guides** — every trophy card shows a short quote from its source (PowerPyx or GTABase), and the guide pane shows the full guide in our own words plus the source links. Claims that are still unconfirmed are labelled as such.
+- **Roadmap** — 3 steps: story (60–80 h) → 100% checklist (~100 h) → Strangers & Freaks cleanup (~10 h), with the full 100% checklist table.
+- **Missables** — exactly one possibly missable trophy (Positive Mental Attitude, Chapter 1 meditation), with the honest uncertainty and a manual-save strategy (15 slots, no mission replay).
+- **Next-up planner** — the 3 closest trophies to chase next, based on what you have earned, with time estimates.
+- **Filters & search** — by kind (story, character quests, activities, collectibles, robberies), grade, text search, not-earned-only and missable-only. Spoiler protection is on by default: the 28 hidden trophies stay masked until earned.
+- **Notes, export/import, reset** — personal notes per trophy, progress export/import as JSON, and two themes (paper light + night dark).
+
+Fully offline: vanilla ES modules + CSS, no framework, no network requests. Trophy data lives in `app/data/trophies.json` (names, descriptions and grades match the official list as published on Exophase; hidden flags match GTABase and PlanetGTA6).
 
 ## Run it
 
 ```sh
 node serve.ts
 ```
+
+Then open http://localhost:8080.
 
 ---
 
