@@ -1,6 +1,7 @@
-/* Leonida Platinum Guide — tokens first, then components.
+/* Leonida Platinum Guide — design tokens first, then components.
    Paper (light) is the default; Night (dark) derives from it: lighter surfaces
-   for elevation, desaturated accents, off-white text (never pure white on black). */
+   for elevation, desaturated accents, off-white text (never pure white on black).
+   Type scale uses a 1.25 ratio; spacing uses a 4px base. */
 :root {
   color-scheme: light;
   --type-ratio: 1.25;
@@ -34,10 +35,10 @@
   --success: #15803d;
   --danger: #b91c1c;
   --danger-soft: #fde8e8;
-  --gold: #92600a;
+  --gold: #7a4d05;
   --silver: #5b6b7a;
   --bronze: #8a4b1f;
-  --platinum: #0e7490;
+  --platinum: #0b5e75;
   --shadow: 0 1px 2px rgba(34, 29, 22, 0.08), 0 4px 16px rgba(34, 29, 22, 0.06);
 }
 [data-theme="night"] {
@@ -80,12 +81,13 @@ h2 { font-size: var(--text-xl); margin: 0 0 var(--space-4); }
 h3 { font-size: var(--text-lg); margin: 0 0 var(--space-2); }
 p { margin: 0 0 var(--space-4); }
 a { color: var(--accent); text-underline-offset: 2px; }
-button, input, select, textarea { font: inherit; color: inherit; }
+button, input, select, textarea { font: inherit; color: inherit; margin: 0; }
 button { cursor: pointer; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .skip-link { position: absolute; top: -100%; left: var(--space-4); padding: var(--space-2) var(--space-4); background: var(--accent); color: var(--accent-text); border-radius: 0 0 var(--radius) var(--radius); z-index: 50; }
 .skip-link:focus { top: 0; }
 
+/* Header */
 .topbar {
   max-width: 1280px; margin: 0 auto; padding: var(--space-4) var(--space-6) var(--space-2);
   display: flex; gap: var(--space-6); justify-content: space-between; align-items: flex-start; flex-wrap: wrap;
@@ -100,6 +102,7 @@ button { cursor: pointer; }
 .top-actions button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-text); }
 .top-actions button:hover { filter: brightness(1.05); }
 
+/* KPI tiles */
 .kpis {
   max-width: 1280px; margin: 0 auto; padding: 0 var(--space-6) var(--space-2);
   display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-3);
@@ -112,6 +115,7 @@ button { cursor: pointer; }
 .bar { height: 10px; background: var(--surface-2); border-radius: 999px; overflow: hidden; margin-top: var(--space-2); }
 .bar-fill { display: block; height: 100%; background: var(--accent); border-radius: 999px; transition: width 300ms ease; }
 
+/* Tabs */
 .tabs {
   max-width: 1280px; margin: 0 auto; padding: 0 var(--space-6);
   display: flex; gap: var(--space-1); border-bottom: 2px solid var(--border); overflow-x: auto;
@@ -127,12 +131,14 @@ main { max-width: 1280px; margin: 0 auto; padding: var(--space-4) var(--space-6)
 .view[hidden] { display: none; }
 .lede { color: var(--text-2); max-width: 75ch; }
 
+/* Roadmap strip on the checklist */
 .roadmap-strip { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: var(--space-3) var(--space-4); margin-bottom: var(--space-4); box-shadow: var(--shadow); }
 .roadmap-strip h2 { font-size: var(--text-lg); margin-bottom: var(--space-1); }
 .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-4); }
-.steps li { border-left: 3px solid var(--accent); padding-left: var(--space-3); font-size: var(--text-sm); }
+.steps li { border-left: 4px solid var(--accent); padding-left: var(--space-3); font-size: var(--text-sm); }
 .steps strong { display: block; font-size: var(--text-base); }
 
+/* Filter toolbar */
 .toolbar {
   display: flex; gap: var(--space-3); flex-wrap: wrap; align-items: end;
   background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
@@ -158,6 +164,7 @@ main { max-width: 1280px; margin: 0 auto; padding: var(--space-4) var(--space-6)
 .chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-text); }
 .result-count { font-size: var(--text-sm); color: var(--muted); margin: 0 0 var(--space-4); font-variant-numeric: tabular-nums; }
 
+/* Checklist + guide pane split */
 .split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(340px, 460px); gap: var(--space-6); align-items: start; }
 @media (max-width: 900px) { .split { grid-template-columns: 1fr; } }
 .trophy-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-3); }
@@ -186,7 +193,7 @@ main { max-width: 1280px; margin: 0 auto; padding: var(--space-4) var(--space-6)
 .badge.earned-badge { background: var(--accent-soft); color: var(--accent); border-color: var(--accent); }
 .quote {
   margin: var(--space-2) 0 0; padding: var(--space-2) var(--space-3); font-size: var(--text-sm);
-  border-left: 3px solid var(--accent); background: var(--accent-soft); border-radius: 0 var(--radius) var(--radius) 0;
+  border-left: 4px solid var(--accent); background: var(--accent-soft); border-radius: 0 var(--radius) var(--radius) 0;
 }
 .quote cite { font-style: normal; font-weight: 700; }
 .guide-btn {
@@ -196,6 +203,7 @@ main { max-width: 1280px; margin: 0 auto; padding: var(--space-4) var(--space-6)
 .guide-btn:hover { background: var(--surface-3); }
 .masked { color: var(--muted); font-style: italic; }
 
+/* Guide detail pane */
 .detail {
   position: sticky; top: var(--space-4);
   background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
@@ -225,6 +233,7 @@ main { max-width: 1280px; margin: 0 auto; padding: var(--space-4) var(--space-6)
 }
 .mark-btn:hover { filter: brightness(1.08); }
 
+/* Roadmap view */
 .roadmap-cards { display: grid; gap: var(--space-4); margin-bottom: var(--space-6); }
 .road-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: var(--space-6); box-shadow: var(--shadow); }
 .road-card .time { font-family: var(--font-body); font-size: var(--text-sm); color: var(--accent); font-weight: 700; }
@@ -234,6 +243,7 @@ main { max-width: 1280px; margin: 0 auto; padding: var(--space-4) var(--space-6)
 .check-table th, .check-table td { border-bottom: 1px solid var(--border); padding: var(--space-2) var(--space-3); text-align: left; font-variant-numeric: tabular-nums; }
 .check-table th { background: var(--surface-2); font-size: var(--text-sm); text-transform: uppercase; letter-spacing: 0.05em; }
 
+/* Missables + planner */
 .miss-card { background: var(--surface); border: 2px solid var(--danger); border-radius: var(--radius); padding: var(--space-6); margin-bottom: var(--space-6); box-shadow: var(--shadow); }
 .miss-card h3 { font-size: var(--text-xl); }
 .save-list li { margin-bottom: var(--space-2); }
@@ -247,6 +257,7 @@ main { max-width: 1280px; margin: 0 auto; padding: var(--space-4) var(--space-6)
 .nextup .why { color: var(--text-2); font-size: var(--text-sm); margin: 0; }
 .planner-note { color: var(--muted); font-size: var(--text-sm); margin-top: var(--space-4); }
 
+/* Settings view */
 .settings-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-6); }
 .settings-grid > div { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: var(--space-6); box-shadow: var(--shadow); }
 .hint { font-size: var(--text-sm); color: var(--muted); }
@@ -282,8 +293,10 @@ footer { max-width: 1280px; margin: 0 auto; padding: var(--space-6); color: var(
 .shot-2 .detail { max-height: calc(100vh - 2rem); }
 .shot-3 .subtitle, .shot-3 .kpi-note { display: none; }
 .shot-3 h1 { font-size: 1.5rem; }
+.shot-3 h2 { margin-bottom: var(--space-2); }
 .shot-3 .kpis, .shot-3 .lede { display: none; }
-.shot-3 .miss-card { padding: var(--space-4) var(--space-6); margin-bottom: var(--space-4); }
+.shot-3 .miss-card { padding: var(--space-3) var(--space-6); margin-bottom: var(--space-3); }
+.shot-3 .miss-card h3 { font-size: var(--text-lg); }
 .shot-3 .miss-card .guide-text { font-size: 0.9375rem; line-height: 1.55; }
 .shot-3 #missCard .guide-btn { display: none; }
 .shot-3 .nextup li { padding: var(--space-2) var(--space-3); }
